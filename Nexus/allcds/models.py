@@ -24,7 +24,7 @@ class Record(models.Model):
     is_true=models.CharField(max_length=15,blank=True,null=True)
 
     # cell images
-    image = models.ImageField(upload_to='images/',blank=True, null=True)  # Use ImageField to store images
+    image = models.FileField(upload_to='images/',blank=True, null=True)  # Use ImageField to store images
 
 
 
