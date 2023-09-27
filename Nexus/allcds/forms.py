@@ -33,7 +33,7 @@ class SignUpForm(UserCreationForm):
 
 
 class AddRecordForm(forms.ModelForm):
-    first_name= forms.CharField(required=False ,label="First Name",max_length=100,widget=forms.TextInput(attrs={'class':'px-5 bg-rose-50 border border-gray-300 text-gray-900  bg-rose-50 border border-gray-300 text-gray-900 py-2 w-full  focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg block mb-2 text-sm font-medium text-gray-900 dark:text-black','placeholder':'Jhon','required':True}))
+    first_name= forms.CharField(required=False ,label="First Name",max_length=100,widget=forms.TextInput(attrs={'class':'px-5 bg-rose-50 border border-gray-300 text-gray-900  bg-rose-50 border border-gray-300 text-gray-900 py-2 w-full  focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg block mb-2 text-sm font-medium text-gray-900 dark:text-white','placeholder':'Jhon','required':True}))
     last_name= forms.CharField(required=False,label="Last Name",max_length=100,widget=forms.TextInput(attrs={'class':'px-5 bg-rose-50 border border-gray-300 text-gray-900  bg-rose-50 border border-gray-300 text-gray-900 py-2 w-full  focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg block mb-2 text-sm font-medium text-gray-900 dark:text-black','placeholder':'Doe','required':True  }))
     age=forms.IntegerField(required=False ,label="Age",widget=forms.NumberInput(attrs={'class':'px-5 bg-rose-50 border border-gray-300 text-gray-900  bg-rose-50 border border-gray-300 text-gray-900 py-2 w-full  focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg block mb-2 text-sm font-medium text-gray-900 dark:text-black','placeholder':'27' ,'required':True  }))
 
