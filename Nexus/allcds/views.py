@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from .forms import SignUpForm
-
+from .forms import SignUpForm, AddRecordForm
+from .models import Record
 # Create your views here.
+def records(request):
+    records=Record.objects.all()
+
+    return render(request,'records.html',{'records':records})
 
 def home(request):
+
     if request.method=='POST':
         username=request.POST['username']
         password=request.POST['password']
@@ -45,3 +50,43 @@ def register_user(request):
         return render(request,'register.html',{'form':form})
 
     return render(request,'register.html',{'form':form})
+
+
+
+def precord(request,pk):
+    if request.user.is_authenticated:
+        patient_record=Record.objects.get(id=pk)
+        return render(request,'pat_records.html',{'patient_record':patient_record})
+    else:
+        messages.success(request,"You must be logged in to view this page")
+        return redirect('home')
+
+
+def del_precord(request,pk):
+    if request.user.is_authenticated:
+
+        delete = Record.objects.get(id=pk)
+        delete.delete()
+        messages.success(request,"Deleted")
+        return redirect('home')
+    else:
+        messages.success(request,"You must be logged in to view this page")
+        return redirect('home')
+
+
+def add_precord(request):
+
+    form=AddRecordForm(request.POST , request.FILES)
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            if form.is_valid():
+                add_record=form.save()
+                messages.success(request,"Record Added")
+                return redirect('home')
+
+        return render(request,'add_records.html',{'form':form})
+    else:
+        messages.success(request,"You must be logged in to view this page")
+        return redirect('home')
+
+
