@@ -66,5 +66,8 @@ class AddRecordForm(forms.ModelForm):
         model=Record
         exclude=('user',)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
 
 

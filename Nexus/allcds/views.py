@@ -4,8 +4,9 @@ from django.contrib import messages
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
 import os
-#import tensorflow
-#from tensorflow import keras
+import tensorflow
+from tensorflow import keras
+import zipfile
 
 class Prata():
   def __init__(self,batch_size,img_height,img_width):
@@ -133,12 +134,12 @@ def up_precord(request,pk):
         currect_record=Record.objects.get(id=pk)
         form=AddRecordForm(request.POST  or None, request.FILES or None,instance=currect_record)
         if form.is_valid():
-            dpath='/home/ahmed/lab/ALLCDS/Nexus/media/images/'+forms.cleaned_data['image']
+            dpath='/home/ahmed/lab/ALLCDS/Nexus/media/images/'+str(form.cleaned_data['image'])
             mpath='/home/ahmed/lab/ALLCDS/Nexus/allcds/model/weights/content/wb'
-            object=Uzta(dpath).unzip()
+            zipfile.ZipFile(dpath,'r').extractall(dpath[:-4]+'/')
             new = Prata(32,180,180).load_data(dpath[:-4])
-            whatever=prometheus(mpath)
-            form.cleaned_data['is_true']=whatever.infer(new)
+            whatever=Prometheus(mpath)
+            form.instance.is_true=whatever.infer(new)
             form.save()
             messages.success(request,"Record Updated" )
             return redirect('home')
