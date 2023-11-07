@@ -7,6 +7,7 @@ import os
 import tensorflow
 from tensorflow import keras
 import zipfile
+import random
 
 class Prata():
   def __init__(self,batch_size,img_height,img_width):
@@ -46,7 +47,9 @@ class Prometheus():
 # Create your views here.
 def records(request):
     records=Record.objects.all()
-
+    print(len(records)) # for total number of diagnosis
+    print(len([i.is_true for i in records if i.is_true=='ALL'])) # diagnosed patients
+    print(random.randint(1,len(records))) # new patients
     return render(request,'records.html',{'records':records})
 
 def home(request):
