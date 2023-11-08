@@ -22,7 +22,7 @@
 ALLCDS is a simple web application, built to identify leukaemia cells.
 
 This application utilizes pretrained CNN architectures in TensorFlow and uses APIs from Django to seamlessly integrate its core logic, interact with the database, manage models, and represent visual components for an enhanced user experience.<br /><br />
-ALLCDS works on all major platforms.
+
 </p>
 <!--
 [Getting started](#getting-started) •

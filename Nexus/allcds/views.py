@@ -3,11 +3,13 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
-import os
+
 import tensorflow
 from tensorflow import keras
-import zipfile
+
+import os
 import random
+import zipfile
 from pathlib import Path
 
 class Prata():
@@ -19,7 +21,7 @@ class Prata():
   def load_data(self,path):
     train_ds= tensorflow.keras.utils.image_dataset_from_directory(
         path,
-        seed=123,
+        seed=42,
         image_size=(self.img_height, self.img_width),
         batch_size=self.batch_size)
     AUTOTUNE = tensorflow.data.AUTOTUNE
