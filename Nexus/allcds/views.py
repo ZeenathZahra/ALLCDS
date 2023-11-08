@@ -3,10 +3,56 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
+
+import tensorflow
+from tensorflow import keras
+
+import os
+import random
+import zipfile
+from pathlib import Path
+
+class Prata():
+  def __init__(self,batch_size,img_height,img_width):
+    self.batch_size=batch_size
+    self.img_height=img_height
+    self.img_width=img_width
+
+  def load_data(self,path):
+    train_ds= tensorflow.keras.utils.image_dataset_from_directory(
+        path,
+        seed=42,
+        image_size=(self.img_height, self.img_width),
+        batch_size=self.batch_size)
+    AUTOTUNE = tensorflow.data.AUTOTUNE
+    return train_ds.cache().prefetch(buffer_size=AUTOTUNE)
+
+
+class Uzta():
+  def __init__(self,path):
+    self.path=path
+
+  def unzip(self):
+    zipfile.ZipFile(self.path,'r').extractall()
+
+class Prometheus():
+  def __init__(self,model_dir):
+    self.model_dir=model_dir
+
+  def infer(self,dataset):
+    model = tensorflow.keras.models.load_model(self.model_dir)
+    return "HEM" if model.predict(dataset)[0][0]>0.5 else "ALL"
+
+
+
+
+
 # Create your views here.
 def records(request):
     records=Record.objects.all()
-
+    print(len(records)) # for total number of diagnosis
+    print(len([i.is_true for i in records if i.is_true=='ALL'])) # diagnosed patients
+    print(random.randint(1,len(records))) # new patients
     return render(request,'records.html',{'records':records})
 
 def home(request):
@@ -85,6 +131,26 @@ def add_precord(request):
                 return redirect('home')
 
         return render(request,'add_records.html',{'form':form})
+    else:
+        messages.success(request,"You must be logged in to view this page")
+        return redirect('home')
+
+def up_precord(request,pk):
+    if request.user.is_authenticated:
+        currect_record=Record.objects.get(id=pk)
+        form=AddRecordForm(request.POST  or None, request.FILES or None,instance=currect_record)
+        if form.is_valid():
+            BASE_DIR = Path(__file__).resolve().parent.parent
+            dpath=str(BASE_DIR)+'/media/'+str(form.cleaned_data['image'])
+            mpath=str(BASE_DIR)+'/allcds/model/weights/content/wb'
+            zipfile.ZipFile(dpath,'r').extractall(dpath[:-4]+'/')
+            new = Prata(32,180,180).load_data(dpath[:-4])
+            whatever=Prometheus(mpath)
+            form.instance.is_true=whatever.infer(new)
+            form.save()
+            messages.success(request,"Record Updated" )
+            return redirect('home')
+        return render(request,'up_record.html',{'form':form})
     else:
         messages.success(request,"You must be logged in to view this page")
         return redirect('home')

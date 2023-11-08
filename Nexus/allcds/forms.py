@@ -45,26 +45,30 @@ class AddRecordForm(forms.ModelForm):
 
     email=forms.EmailField( required=False ,  label="Email",widget=forms.TextInput(attrs={'class':'px-5  bg-rose-50 border border-gray-300 text-gray-900 py-2 w-full focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg block mb-2 text-sm font-medium text-gray-900 dark:text-black','placeholder':'jhon@doe.us'}))
     phone=forms.CharField( required=False  ,label="Phone Number",widget=forms.TextInput(attrs={'class':'px-5  bg-rose-50 border border-gray-300 text-gray-900 py-2 w-full focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg block mb-2 text-sm font-medium text-gray-900 dark:text-black','placeholder':'+1-212-456-7890'}))
+    info=forms.CharField(required=False,label="Info",max_length=105,widget=forms.Textarea(attrs={'class':'px-5  bg-rose-50 border border-gray-300 text-gray-900 py-2 w-full focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg block mb-2 text-sm font-medium text-gray-900 dark:text-black','placeholder':'Patient\'s description'}))
 
     is_true=forms.CharField(required=False  ,  label="Diagosis",widget=forms.TextInput(attrs={'class':'px-5  bg-rose-50 border border-gray-300 text-gray-900 py-2 w-full focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg block mb-2 text-sm font-medium text-gray-900 dark:text-black','placeholder':'Unspecified'}))
 
 
 
-    image=   forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': False,'required': True }))
+    image=   forms.FileField(required=True, widget=forms.ClearableFileInput(attrs={'multiple': False }))
 
 
-    medical_history=  forms.FileField(required=False,   widget=forms.ClearableFileInput(attrs={'multiple': False, 'required':True }))
+    medical_history=  forms.FileField(required=False,   widget=forms.ClearableFileInput(attrs={'multiple': False }))
 
-    genatic_information=   forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': False, 'required':True  }))
+    genatic_information=   forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': False }))
 
-    lab_results=  forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': False, 'required':True  }))
-    radiology_results=  forms.FileField(required=False,  widget=forms.ClearableFileInput(attrs={'multiple': False, 'required':True  }))
-    clinical_results=  forms.FileField(required=False,  widget=forms.ClearableFileInput(attrs={'multiple': False, 'required':True }))
+    lab_results=  forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': False}))
+    radiology_results=  forms.FileField(required=False,  widget=forms.ClearableFileInput(attrs={'multiple': False  }))
+    clinical_results=  forms.FileField(required=False,  widget=forms.ClearableFileInput(attrs={'multiple': False }))
 
 
     class Meta:
         model=Record
         exclude=('user',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 

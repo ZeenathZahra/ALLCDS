@@ -24,8 +24,7 @@
                     </div>
                 </div>
                 <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-                    <a  class="text-white py-2 px-4 uppercase rounded bg-rose-400 hover:bg-rose-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">  Modify</:w
-                        a>
+                    <a  href="{% url 'update_record' patient_record.id  %}" class="text-white py-2 px-4 uppercase rounded bg-rose-400 hover:bg-rose-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">  Modify</a>
                     <a  href="{% url 'delete_record' patient_record.id %}" class="text-white text-center align-center py-2 px-4 uppercase rounded bg-rose-700 hover:bg-rose-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">  Delete</a>
                 </div>
         </div>
@@ -38,48 +37,48 @@
                     <p class="mt-8 text-gray-500">Diagnosis: {{patient_record.is_true}}</p>
         </div>
         <div class="mt-12 flex flex-col justify-center">
-            <h1>Note</h1>
+            <h1 class="text-2xl font-extrabold dark:text-white">Note<h1>
             <br>
-            <p class="text-gray-600 font-light">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</p>
-            <button  class="text-indigo-500 py-2 px-4  font-medium mt-4">  Show more</button>
+            <p class="text-gray-600 font-light">{{patient_record.info}}</p>
         </div>
 
         <div class="mt-12 flex flex-col justify-center"  >
-            <h1> Link to Images (Compressed) </h1>
             <br>
-            <p  class="text-gray-600 font-light"  >{{patient_record.image}}</p>
+            <button type="button" class="text-white w-24 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a href="/media/{{patient_record.image}}"> Details</a></button>
         </div>
 
          <div class="mt-12 flex flex-col justify-center"  >
-            <h1> Medical History </h1>
+            <h2 class="text-2xl font-extrabold dark:text-white">Medical History </h2>
             <br>
-            <p  class="text-gray-600 font-light"  >{{patient_record.medical_history}}</p>
+            <p  class="text-gray-600 font-light"  ></p>
+            <button type="button" class="text-white w-24 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a href="/media/{{patient_record.medical_history}}"> Details</a></button>
         </div>
 
 
          <div class="mt-12 flex flex-col justify-center"  >
-            <h1> Genetic Information </h1>
+            <h2 class="text-2xl font-extrabold dark:text-white">Genetic Information</h2>
             <br>
-            <p  class="text-gray-600 font-light"  >{{patient_record.genatic_information}}</p>
+            <button type="button" class="text-white w-24 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a href="/media/{{patient_record.genatic_information}}"> Details</a></button>
         </div>
-
+        
         <div class="mt-12 flex flex-col justify-center"  >
-            <h1> Lab Results </h1>
+            <h2 class="text-2xl font-extrabold dark:text-white">Lab Results</h2>
             <br>
-            <p  class="text-gray-600 font-light"  >{{patient_record.lab_results}}</p>
+            <button type="button" class="text-white w-24 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a href="/media/{{patient_record.lab_results}}"> Details</a></button>
         </div>
-
+        
         <div class="mt-12 flex flex-col justify-center"  >
-            <h1> Radiology Results </h1>
+            <h2 class="text-2xl font-extrabold dark:text-white">Radiology Results</h2>
             <br>
-            <p  class="text-gray-600 font-light"  >{{patient_record.radiology_results}}</p>
+            <p  class="text-gray-600 font-light"  ></p>
+            <button type="button" class="text-white w-24 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a href="/media/{{patient_record.radiology_results}}"> Details</a></button>
         </div>
-
-
+        
+        
         <div class="mt-12 flex flex-col justify-center"  >
-            <h1> Clinical Results  </h1>
+            <h2 class="text-2xl font-extrabold dark:text-white">Clinical Results</h2>
             <br>
-            <p  class="text-gray-600 font-light"  >{{patient_record.clinical_results}}</p>
+            <button type="button" class="text-white w-24 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a href="/media/{{patient_record.clinical_results}}"> Details</a></button>
         </div>
 
 

@@ -20,11 +20,12 @@ class Record(models.Model):
 
     email=models.CharField(max_length=50)
     phone=models.CharField(max_length=15)
+    info=models.TextField(max_length=105)
 
     is_true=models.CharField(max_length=15,blank=True,null=True)
 
     # cell images
-    image = models.ImageField(upload_to='images/',blank=True, null=True)  # Use ImageField to store images
+    image = models.FileField(upload_to='images/',blank=True, null=True)  # Use ImageField to store images
 
 
 
