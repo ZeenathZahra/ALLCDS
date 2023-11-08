@@ -8,6 +8,7 @@ import tensorflow
 from tensorflow import keras
 import zipfile
 import random
+from pathlib import Path
 
 class Prata():
   def __init__(self,batch_size,img_height,img_width):
@@ -137,8 +138,9 @@ def up_precord(request,pk):
         currect_record=Record.objects.get(id=pk)
         form=AddRecordForm(request.POST  or None, request.FILES or None,instance=currect_record)
         if form.is_valid():
-            dpath='/home/ahmed/lab/ALLCDS/Nexus/media/images/'+str(form.cleaned_data['image'])
-            mpath='/home/ahmed/lab/ALLCDS/Nexus/allcds/model/weights/content/wb'
+            BASE_DIR = Path(__file__).resolve().parent.parent
+            dpath=str(BASE_DIR)+'/media/'+str(form.cleaned_data['image'])
+            mpath=str(BASE_DIR)+'/allcds/model/weights/content/wb'
             zipfile.ZipFile(dpath,'r').extractall(dpath[:-4]+'/')
             new = Prata(32,180,180).load_data(dpath[:-4])
             whatever=Prometheus(mpath)

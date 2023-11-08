@@ -20,6 +20,7 @@ class Record(models.Model):
 
     email=models.CharField(max_length=50)
     phone=models.CharField(max_length=15)
+    info=models.TextField(max_length=105)
 
     is_true=models.CharField(max_length=15,blank=True,null=True)
 
