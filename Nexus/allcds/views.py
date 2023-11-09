@@ -12,6 +12,10 @@ import random
 import zipfile
 from pathlib import Path
 
+
+# pending diagnosis
+# user activity
+
 class Prata():
   def __init__(self,batch_size,img_height,img_width):
     self.batch_size=batch_size
@@ -141,9 +145,9 @@ def up_precord(request,pk):
         form=AddRecordForm(request.POST  or None, request.FILES or None,instance=currect_record)
         if form.is_valid():
             BASE_DIR = Path(__file__).resolve().parent.parent
-            dpath=str(BASE_DIR)+'/media/'+str(form.cleaned_data['image'])
-            mpath=str(BASE_DIR)+'/allcds/model/weights/content/wb'
-            zipfile.ZipFile(dpath,'r').extractall(dpath[:-4]+'/')
+            dpath=str(BASE_DIR)+"\\media\\images\\"+str(form.cleaned_data['image']).replace('/','\\')
+            mpath=str(BASE_DIR)+"\\allcds\\model\\weights\\content\\wb.h5"
+            zipfile.ZipFile(dpath,'r').extractall(dpath[:-4]+"\\")
             new = Prata(32,180,180).load_data(dpath[:-4])
             whatever=Prometheus(mpath)
             form.instance.is_true=whatever.infer(new)

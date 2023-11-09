@@ -8,13 +8,23 @@
   <div class="flex flex-col items-center justify-center px-12 py-16 mx-auto lg:py-0">
      <div class="w-full bg-white rounded-lg shadow dark:border  sm:max-w-2xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-700 md:text-2xl dark:text-black">
                   Add Details
               </h1>
               <form class="space-y-4 md:space-y-6" method='POST' action="{% url 'add_record' %}" enctype="multipart/form-data") >
                   {% csrf_token %}
 
-                  {{ form.as_p }}
+                  <!-- {{ form.as_p }} -->
+
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                       <h2 class="text-lg text-white" > {{ field.label_tag }} </h2> {{ field }}
+                        {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
 
                   <br />
 
