@@ -1,13 +1,3 @@
-
-<!-- markdownlint-configure-file {
-  "MD013": {
-    "code_blocks": false,
-    "tables": false
-  },
-  "MD033": false,
-  "MD041": false
-} -->
-
 <div align="center">
 
 # Acute lymphoblastic leukemia Diagnosis System
@@ -15,25 +5,34 @@
  <a href="https://github.com/thlurte/dots/stargazers">
         <img src="https://img.shields.io/github/stars/thlurte/dots?color=%23BB9AF7&labelColor=%231A1B26&style=for-the-badge">
     </a>
+ <a href="https://github.com/thlurte/dots/stargazers">
         <img src="https://img.shields.io/github/forks/thlurte/dots?color=%237AA2F7&labelColor=%231A1B26&style=for-the-badge">
     </a>
-
-<p>
-ALLCDS is a simple web application, built to identify leukaemia cells.
-
-This application utilizes pretrained CNN architectures in TensorFlow and uses APIs from Django to seamlessly integrate its core logic, interact with the database, manage models, and represent visual components for an enhanced user experience.<br /><br />
-
-</p>
 
 [Getting started](#getting-started) 
 [Installation](#installation) 
 [Configuration](#configuration) 
 [Integrations](#contributors)
 
+<p>
+Welcome to ALLCDS, a user-friendly web application designed for the precise identification of leukemia cells. Leveraging the power of pre-trained Convolutional Neural Networks (CNNs) in TensorFlow, coupled with the seamless integration of Django APIs, ALLCDS ensures a smooth experience for users.
+</p>
 </div>
 
+**Key Features:**
+
+- CNN Architecture: Utilizes state-of-the-art pre-trained CNNs for accurate cell identification.
+
+- TensorFlow Integration: Leverages the robust TensorFlow framework for efficient machine learning operations.
+
+- Django APIs: Seamlessly integrates with Django APIs to handle core logic, database interactions, model management, and user interface components.
+
+**Enhanced User Experience:**
+
+ALLCDS goes beyond functionality, focusing on an intuitive and enhanced user experience. The application streamlines the process of identifying leukemia cells, making it accessible to both professionals and users with varying levels of technical expertise.
+
 ## Getting started
-Follow these steps to get started with ALLCDS.
+Clone the repository and follow the steps below to quickly set up ALLCDS on your local machine. Start identifying leukemia cells with just a few simple steps!
 
 ### Prerequisites
 - Python: 3.8 or 3.9
@@ -62,6 +61,54 @@ Visit [http://localhost:8000](http://localhost:8000) in your browser to access A
 
 ## Configuration
 Configure ALLCDS by updating the settings in the `settings.py` file. Ensure that you set up the database connection and any other necessary parameters according to your environment.
+
+### Output Structure
+```
+├── allcds
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   ├── model
+│   │   └── weights
+│   │       └── content
+│   │           └── wb
+│   │               ├── assets
+│   │               ├── fingerprint.pb
+│   │               ├── keras_metadata.pb
+│   │               ├── saved_model.pb
+│   │               └── variables
+│   │                   ├── variables.data-00000-of-00001
+│   │                   └── variables.index
+│   ├── models.py
+│   ├── templates
+│   │   ├── add_records.html
+│   │   ├── base.html
+│   │   ├── home.html
+│   │   ├── navbar.html
+│   │   ├── pat_records.html
+│   │   ├── records.html
+│   │   ├── register.html
+│   │   └── up_record.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── manage.py
+├── media
+│   ├── clinical_results
+│   ├── genatic_information
+│   ├── images
+│   ├── lab_results
+│   ├── medical_history
+│   └── radiology_results
+└── Nexus
+    ├── asgi.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+
+22 directories, 54 files
+```
 
 ## Contribution
 
