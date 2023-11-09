@@ -19,7 +19,7 @@
                 {% for field in form %}
                     <div class="fieldWrapper">
                         {{ field.errors }}
-                       <h2 class="text-lg text-white" > {{ field.label_tag }} </h2> {{ field }}
+                       <h2 class="text-lg text-black dark:text-white" > {{ field.label_tag }} </h2> {{ field }}
                         {% if field.help_text %}
                         <p class="help">{{ field.help_text|safe }}</p>
                         {% endif %}
