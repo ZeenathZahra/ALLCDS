@@ -25,21 +25,48 @@ This application utilizes pretrained CNN architectures in TensorFlow and uses AP
 
 </p>
 
-[Getting started](#getting-started) •
-[Installation](#installation) •
-[Configuration](#configuration) •
+[Getting started](#getting-started) 
+[Installation](#installation) 
+[Configuration](#configuration) 
 [Integrations](#contributors)
 
 </div>
 
 ## Getting started
+Follow these steps to get started with ALLCDS.
+
+### Prerequisites
+- Python: 3.8 or 3.9
+- TensorFlow: 2.14.0
+- Django: 4.2.5
 
 ## Installation
+1. Clone the ALLCDS repository:
+```bash
+git clone https://github.com/thlurte/ALLCDS.git
+```
+2. Navigate to the project directory:
+```bash
+cd ALLCDS
+```
+3. Install the required dependencies:
+```bash
+pip install -r requirements.txt
+```
+4. Run the application
+```bash
+python manage.py runserver
+```
 
-ALLCDS can be installed in 4 easy steps:
+Visit [http://localhost:8000](http://localhost:8000) in your browser to access ALLCDS.
 
 ## Configuration
+Configure ALLCDS by updating the settings in the `settings.py` file. Ensure that you set up the database connection and any other necessary parameters according to your environment.
 
-## Contributors
+## Contribution
 
+We appreciate contributions! If you'd like to contribute to ALLCDS, please follow these guidelines:
 
+- Fork the repository.
+- Create a new branch for your feature or bug fix.
+- Make your changes and submit a pull request.

@@ -12,6 +12,10 @@ import random
 import zipfile
 from pathlib import Path
 
+
+# pending diagnosis
+# user activity
+
 class Prata():
   def __init__(self,batch_size,img_height,img_width):
     self.batch_size=batch_size
