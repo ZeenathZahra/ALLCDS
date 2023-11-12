@@ -5,6 +5,7 @@ from .forms import SignUpForm, AddRecordForm
 from .models import Record
 
 import tensorflow
+import pandas
 from tensorflow import keras
 
 import os
@@ -47,6 +48,11 @@ class Prometheus():
     model = tensorflow.keras.models.load_model(self.model_dir)
     return "HEM" if model.predict(dataset)[0][0]>0.5 else "ALL"
 
+class Statistics():
+    def __init__(self,records):
+        self.length = len(records)
+        self.patients = len([i.is_true for i in records if i.is_true=='ALL'])
+        self.new_patients = random.randint(1,len(records))
 
 
 
@@ -54,9 +60,10 @@ class Prometheus():
 # Create your views here.
 def records(request):
     records=Record.objects.all()
-    print(len(records)) # for total number of diagnosis
-    print(len([i.is_true for i in records if i.is_true=='ALL'])) # diagnosed patients
-    print(random.randint(1,len(records))) # new patients
+    merecat=Statistics(records)
+    # print(len(records)) # for total number of diagnosis
+    # print(len([i.is_true for i in records if i.is_true=='ALL'])) # diagnosed patients
+    # print(random.randint(1,len(records))) # new patients
     return render(request,'records.html',{'records':records})
 
 def home(request):
@@ -74,7 +81,13 @@ def home(request):
             messages.success(request,"Error, Try again...")
             return redirect('home')
     else:
-        return render(request,'home.html',{})
+        records=Record.objects.all()
+        merecat=Statistics(records)
+        print()
+        print(merecat.length)
+        frame = pandas.DataFrame({'id':[i.id for i in records],'date':[i.created_At for i in records],'diagnosis':[i.is_true for i in records]})
+        print(frame)
+        return render(request,'home.html',{'stats':merecat,'frame':frame})
 
 
 def logout_user(request):

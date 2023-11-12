@@ -25,7 +25,7 @@
                             Patients
                           </h5>
                           <span class="font-semibold text-xl text-blueGray-700">
-                            350,897
+                            {{stats.length}}
                           </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -34,14 +34,6 @@
                           </div>
                         </div>
                       </div>
-                        <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-emerald-500 mr-2">
-                          <i class="fas fa-arrow-up"></i> 3.48%
-                        </span>
-                        <span class="whitespace-nowrap">
-                          Since last month
-                        </span>
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -54,7 +46,7 @@
                             New patients
                           </h5>
                           <span class="font-semibold text-xl text-blueGray-700">
-                            2,356
+                            {{ stats.new_patients }}
                           </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -63,14 +55,6 @@
                           </div>
                         </div>
                       </div>
-                      <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-red-500 mr-2">
-                          <i class="fas fa-arrow-down"></i> 3.48%
-                        </span>
-                        <span class="whitespace-nowrap">
-                          Since last week
-                        </span>
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -83,7 +67,7 @@
                             Positive Cases
                           </h5>
                           <span class="font-semibold text-xl text-blueGray-700">
-                            924
+                            {{stats.patients}}
                           </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -92,14 +76,6 @@
                           </div>
                         </div>
                       </div>
-                      <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-orange-500 mr-2">
-                          <i class="fas fa-arrow-down"></i> 1.10%
-                        </span>
-                        <span class="whitespace-nowrap">
-                          Since yesterday
-                        </span>
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -112,7 +88,7 @@
                             Accuracy
                           </h5>
                           <span class="font-semibold text-xl text-blueGray-700">
-                            49,65%
+                            89,65%
                           </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -121,14 +97,6 @@
                           </div>
                         </div>
                       </div>
-                      <p class="text-sm text-blueGray-400 mt-4">
-                        <span class="text-emerald-500 mr-2">
-                          <i class="fas fa-arrow-up"></i> 12%
-                        </span>
-                        <span class="whitespace-nowrap">
-                          Since last month
-                        </span>
-                      </p>
                     </div>
                   </div>
                 </div>
