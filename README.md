@@ -31,16 +31,23 @@ Welcome to ALLCDS, a user-friendly web application designed for the precise iden
 
 ALLCDS goes beyond functionality, focusing on an intuitive and enhanced user experience. The application streamlines the process of identifying leukemia cells, making it accessible to both professionals and users with varying levels of technical expertise.
 
+## Preview
+### Dashboard
+<img src="Documents/Preview/a1.jpg" align="center">
+
+### Login
+<img src="Documents/Preview/a2.jpg" align="center">
+
+### Register
+<img src="Documents/Preview/a3.jpg" align="center">
+
+### Records 
+<img src="Documents/Preview/a4.jpg" align="center">
+
 ## Getting started
 Clone the repository and follow the steps below to quickly set up ALLCDS on your local machine. Start identifying leukemia cells with just a few simple steps!
 
-## Preview
 
-<img src="Documents/Preview/a1.jpg" align="center">
-<img src="Documents/Preview/a2.jpg" align="center">
-<img src="Documents/Preview/a3.jpg" align="center">
-<img src="Documents/Preview/a4.jpg" align="center">
-<img src="Documents/Preview/a5.jpg" align="center">
 
 ### Prerequisites
 - Python: 3.8 or 3.9
