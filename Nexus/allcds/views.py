@@ -4,6 +4,11 @@ from django.contrib import messages
 from .forms import SignUpForm, AddRecordForm
 from .models import Record
 
+from plotly.offline import plot
+import plotly.graph_objs as go
+from plotly.subplots import make_subplots
+import plotly.express as px
+
 import tensorflow
 import pandas
 from tensorflow import keras
@@ -60,10 +65,6 @@ class Statistics():
 # Create your views here.
 def records(request):
     records=Record.objects.all()
-    merecat=Statistics(records)
-    # print(len(records)) # for total number of diagnosis
-    # print(len([i.is_true for i in records if i.is_true=='ALL'])) # diagnosed patients
-    # print(random.randint(1,len(records))) # new patients
     return render(request,'records.html',{'records':records})
 
 def home(request):
@@ -83,11 +84,36 @@ def home(request):
     else:
         records=Record.objects.all()
         merecat=Statistics(records)
-        print()
-        print(merecat.length)
         frame = pandas.DataFrame({'id':[i.id for i in records],'date':[i.created_At for i in records],'diagnosis':[i.is_true for i in records]})
-        print(frame)
-        return render(request,'home.html',{'stats':merecat,'frame':frame})
+        frame['date'] = pandas.to_datetime(frame['date'])
+        custom_colors = {'HEM': '#FF9999', 'ALL': '#EF4444'}
+        figr=px.pie(frame, names='diagnosis', title='Ratio',color='diagnosis',color_discrete_map=custom_colors)
+        figl=px.line(frame, x='date', color='diagnosis', title='Diagnosis Over Time')
+        figbr=go.Figure(data=[go.Table(
+            header=dict(values=list(frame.columns),
+                    fill_color='#FF9999',
+                    align='left'),
+                    cells=dict(values=[frame.id,frame.date,frame.diagnosis],
+                    fill_color='lavender',
+                    align='left'))])
+        filtered_frame = frame[frame['diagnosis']=='Unspecified']
+        figbl=go.Figure(data=[go.Table(
+            header=dict(values=['ID','Status'],
+                    fill_color='#FF9999',
+                    align='left'),
+                    cells=dict(values=[filtered_frame.id,filtered_frame.diagnosis],
+                    fill_color='lavender',
+                    align='left'))])
+
+        
+        plotly_plot_objr = plot({'data': figr}, output_type='div')
+        plotly_plot_objl = plot({'data': figl}, output_type='div')
+        plotly_plot_objbr = plot({'data': figbr}, output_type='div')
+        plotly_plot_objbl = plot({'data': figbl}, output_type='div')
+        
+
+
+        return render(request,'home.html',{'stats':merecat,'frame':frame,'target':plotly_plot_objr,'target1':plotly_plot_objl,'target2':plotly_plot_objbr,'target3':plotly_plot_objbl})
 
 
 def logout_user(request):
