@@ -1,1 +1,232 @@
-<h1>Hello World</h1>
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+{% if user.is_authenticated %}
+
+
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+     
+        <!-- Header -->
+        <div class="relative bg-rose-400 dark:bg-gray-700 md:pt-32 pb-32 pt-12 rounded-xl">
+          <div class="px-4 md:px-10 mx-auto w-full">
+            <div>
+              <!-- Card stats -->
+              <div class="flex flex-wrap">
+                <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+                  <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                    <div class="flex-auto p-4">
+                      <div class="flex flex-wrap">
+                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                          <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                            Patients
+                          </h5>
+                          <span class="font-semibold text-xl text-blueGray-700">
+                            {{stats.length}}
+                          </span>
+                        </div>
+                        <div class="relative w-auto pl-4 flex-initial">
+                          <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
+                            <i class="far fa-chart-bar"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+                  <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                    <div class="flex-auto p-4">
+                      <div class="flex flex-wrap">
+                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                          <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                            New patients
+                          </h5>
+                          <span class="font-semibold text-xl text-blueGray-700">
+                            {{ stats.new_patients }}
+                          </span>
+                        </div>
+                        <div class="relative w-auto pl-4 flex-initial">
+                          <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-orange-500">
+                            <i class="fas fa-chart-pie"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+                  <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                    <div class="flex-auto p-4">
+                      <div class="flex flex-wrap">
+                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                          <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                            Positive Cases
+                          </h5>
+                          <span class="font-semibold text-xl text-blueGray-700">
+                            {{stats.patients}}
+                          </span>
+                        </div>
+                        <div class="relative w-auto pl-4 flex-initial">
+                          <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-pink-500">
+                            <i class="fas fa-users"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+                  <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                    <div class="flex-auto p-4">
+                      <div class="flex flex-wrap">
+                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                          <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                            Accuracy
+                          </h5>
+                          <span class="font-semibold text-xl text-blueGray-700">
+                            89.65%
+                          </span>
+                        </div>
+                        <div class="relative w-auto pl-4 flex-initial">
+                          <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500">
+                            <i class="fas fa-percent"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="px-4 md:px-10 mx-auto w-full -m-24">
+          <div class="flex flex-wrap">
+            <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+              <div
+                class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white"
+              >
+                <div class="p-4 flex-auto">
+                  <!-- Chart -->
+                  <div class="relative" style="height:450px">
+                    {{target1|safe}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full xl:w-4/12 px-4">
+              <div
+                class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
+              >
+                <div class="p-4 flex-auto">
+                  <!-- Chart -->
+                  <div class="relative" style="height:450px">
+                    {{target|safe}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap mt-4">
+            <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+              <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+                <div class="rounded-t mb-0 px-4 py-3 border-0">
+                  <div class="flex flex-wrap items-center">
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                      <h3 class="font-semibold text-base text-blueGray-700">
+                        User Activity
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="block w-full overflow-x-auto">
+                  <!-- Projects table -->
+                  {{target2|safe}}  
+                </div>
+              </div>
+            </div>
+            <div class="w-full xl:w-4/12 px-4">
+              <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+                <div class="rounded-t mb-0 px-4 py-3 border-0">
+                  <div class="flex flex-wrap items-center">
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                      <h3 class="font-semibold text-base text-blueGray-700">
+                        Pending Results
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="block w-full overflow-x-auto">
+                  <!-- Projects table -->
+                  {{target3|safe}} 
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="block py-4">
+            <div class="container mx-auto px-4">
+              <hr class="mb-4 border-b-1 border-blueGray-200" />
+              <div class="flex flex-wrap items-center md:justify-between justify-center">
+                <div class="w-full md:w-4/12 px-4">
+                  <div class="text-sm text-blueGray-500 font-semibold py-1">
+                    Copyright © <span id="javascript-date"></span>
+                      Nexus
+                    </a>
+                  </div>
+                </div>
+                <div class="w-full md:w-8/12 px-4">
+                  <ul class="flex flex-wrap list-none md:justify-end  justify-center">
+                    <li>
+                      <a
+                        href="https://raw.githubusercontent.com/thlurte/ALLCDS/main/LICENSE"
+                        class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
+                      >
+                        MIT License
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    
+
+
+{% else %}
+ <form method='POST' action="{% url 'home' %}" class="space-y-2 md:space-y-3">
+     {% csrf_token %}
+     <br><br><br><br><br><br>
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto  lg:py-0">
+     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                  Sign in to your account
+              </h1>
+                  <div>
+                      <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  </label>
+                      <input type="text" name="username" id="username" class="bg-rose-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-rose-600 focus:border-rose-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Username" required="">
+                  </div>
+                  <div>
+                      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  </label>
+                      <input type="password" name="password" id="password" placeholder="••••••••" class="bg-rose-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                  </div>
+                  <button type="submit" class="w-full text-black bg-rose-300 hover:bg-rose-400 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                  <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                  Don’t have an account yet? <a href="{% url 'register' %}" class="font-medium text-rose-400 hover:underline dark:text-rose-600">Sign up</a>
+                  </p>
+          </div>
+      </div>
+  </div>
+
+ </form>
+
+ {% endif %}
+
+{% endblock %}

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,8 +26,16 @@ SECRET_KEY = 'django-insecure-(4gk^khm3mzrh#%!1u+^2+ux^bky)gclq4*1cpls&i9d_vd**8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
+# Add CHANNEL_LAYERS
+CHANNEL_LAYERS = {
+   'default': { 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+                'CONFIG': {
+                           'hosts': [('127.0.0.1', 3348),],
+                          }
+              }
+}
 
 # Application definition
 
@@ -38,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'allcds',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
+    'channels',
+    'channels_redis'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_plotly_dash.middleware.BaseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'Nexus.urls'
@@ -85,6 +99,21 @@ DATABASES = {
         }
 }
 
+#Add STATICFILES_FINDERS 
+STATICFILES_FINDERS = [
+    'django_plotly_dash.finders.DashAssetFinder',
+    'django_plotly_dash.finders.DashComponentFinder'
+]
+
+#Add PLOTLY_COMPONENTS
+PLOTLY_COMPONENTS = [
+    'dash_core_components',
+    'dash_html_components',
+    'dash_renderer',
+    'dpd_components']
+
+#Add X_FRAME_OPTIONS = 'SAMEORIGIN' to settings.py to enable frames within HTML documents
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -121,6 +150,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL='/media/'
+
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
