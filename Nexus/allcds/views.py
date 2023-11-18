@@ -50,8 +50,9 @@ class Prometheus():
     self.model_dir=model_dir
 
   def infer(self,dataset):
-    model = tensorflow.keras.models.load_model(self.model_dir)
-    return "HEM" if model.predict(dataset)[0][0]>0.5 else "ALL"
+    model = tensorflow.keras.saving.load_model(self.model_dir,compile=True)
+    print(sum (model.predict(dataset))/len(model.predict(dataset)))
+    return "HEM" if sum (model.predict(dataset))/len(model.predict(dataset))>0.5 else "ALL"
 
 class Statistics():
     def __init__(self,records):
@@ -185,7 +186,7 @@ def up_precord(request,pk):
         if form.is_valid():
             BASE_DIR = Path(__file__).resolve().parent.parent
             dpath=str(BASE_DIR)+"\\media\\images\\"+str(form.cleaned_data['image']).replace('/','\\')
-            mpath=str(BASE_DIR)+"\\allcds\\model\\weights\\content\\wb.h5"
+            mpath=str(BASE_DIR)+"\\allcds\\model\\weights\\content\\"
             zipfile.ZipFile(dpath,'r').extractall(dpath[:-4]+"\\")
             new = Prata(32,180,180).load_data(dpath[:-4])
             whatever=Prometheus(mpath)
